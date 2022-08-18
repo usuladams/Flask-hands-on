@@ -23,7 +23,7 @@ def index():
 def convert_html():
     if request.method=="POST":
         number1=request.form.get("number1")
-        if number1=='0' or not number1.isdigit():
+        if int(number1)==0 or not number1.isdigit():
             return render_template("convert.html")
         else:
             return render_template("convert.html",convert=convert(int(number1)),number=number1)
