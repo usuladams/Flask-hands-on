@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>User Add Application</title>
+</head>
+<body>
+    
+    <div style="margin-top:150px;" class="container">
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">
+        <h2>User Add and List Application</h2>
+        <hr>
+        <form action="/add" method="post" class="row g-3">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Username</label>
+              <input type="text"  name="username" class="form-control" placeholder="Please write your name" aria-label="First name">  
+            </div>
+            
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Email Address</label>
+              <input type="email"  name="email" class="form-control" id="inputPassword4" placeholder="name@example.com">
+            </div>
+            
+           
+              <div class="form-floating">
+                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+        
+            
+            <div class="col-12">
+              <button type="submit" name="submit_button" value="add-button" class="btn btn-primary">Add</button>
+              <button type="submit" name="submit_button" value="find-button" class="btn btn-warning">Find</button>
+            </div>
+          </form>
+      </div>
+    <br><br> 
+    {% if users==[] %}
+        
+    <div class="alert alert-warning" role="alert">
+        You don't have a registered user    
+    </div>
+    
+    {% elif finduser %}
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+         
+          <tr>
+          <th scope="row">{{finduser.id}}</th>
+          <td>{{finduser.username}}</td>
+          <td>{{finduser.email}}</td>
+          <td>{{finduser.password}}</td>
+          <td><a href="/delete/{{finduser.id}}" class="btn btn-danger">Delete</a></td>
+        </tr> 
+        
+          
+        
+        
+      </tbody>
+    </table>
+    {% else %}
+    
+    <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Date</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          
+           {% for user in users %}
+            <tr>
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.date_added}}</td>
+            <td><a href="/delete/{{user.id}}" class="btn btn-danger">Delete</a></td>
+          </tr> 
+           {% endfor %}
+            
+          
+          
+        </tbody>
+      </table>
+
+
+    {% endif %}
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

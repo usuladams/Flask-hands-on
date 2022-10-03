@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Emails</title>
+</head>
+<body>
+    <h1>Welcome to Email Database</h1>
+    <form action="#" method="post">
+        <p>
+
+            <label for="name">User Name : </label>
+            <input type="text" name="user_keyword" id="name">
+        </p>
+        <p><input type="submit" value="Show"></p>
+    </form>
+    {% if show_result %}
+        <h1>Result for '{{ keyword }}' </h1>
+            <ul> 
+            {% for x in name_emails %}
+            <li>Username: <b>{{ x[0] }} </b>  ---- Email: <b>{{ x[1] }}</b></li>
+            {% endfor %}
+            </ul>
+    {% endif %}
+</body>
+</html>
